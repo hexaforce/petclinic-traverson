@@ -1,17 +1,18 @@
 <template>
-  <div>
-    <v-tabs v-model="active" color="cyan" dark slider-color="yellow" >
-      <v-tab v-for="n in 3" :key="n" ripple >Item {{ n }} </v-tab>
-      <v-tab-item v-for="n in 3" :key="n" >
-        <v-card flat>
-          <v-card-text>{{ text }}</v-card-text>
-        </v-card>
-      </v-tab-item>
-    </v-tabs>
-    <div class="text-xs-center mt-3">
-      <v-btn @click="next">next tab</v-btn>
-    </div>
-  </div>
+  <v-layout row wrap>
+    <v-flex xs12 lg5 offset-lg2>
+      <v-expansion-panel inset>
+        <v-expansion-panel-content v-for="(item,i) in 5" :key="i" >
+          <template v-slot:header>
+            <div>Item</div>
+          </template>
+          <v-card>
+            <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

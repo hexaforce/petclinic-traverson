@@ -1,8 +1,12 @@
 <template>
-  <div id="app">
-    <router-view/>
-    <BottomNvigation/>
-  </div>
+  <v-app>
+    <v-content>
+      <v-container>
+        <router-view/>
+      </v-container>
+    </v-content>
+      <BottomNvigation/>
+  </v-app>
 </template>
 
 <script>

@@ -1,32 +1,59 @@
 <template>
-  <div>
-    <v-tabs v-model="active" color="cyan" dark slider-color="yellow" >
-      <v-tab v-for="n in 3" :key="n" ripple >Item {{ n }} </v-tab>
-      <v-tab-item v-for="n in 3" :key="n" >
-        <v-card flat>
-          <v-card-text>{{ text }}</v-card-text>
+  <v-container fluid grid-list-xl>
+  <v-layout>
+    <v-flex>
+      <v-hover>
+        <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" width="344" >
+          <v-img :aspect-ratio="16/9" src="https://cdn.vuetifyjs.com/images/cards/cooking.png" ></v-img>
+          <v-card-title>
+            <div>
+              <span class="headline">Cafe Badilico</span>
+              <div class="d-flex">
+                <v-rating :value="value" color="amber" dense half-increments readonly size="14" ></v-rating>
+                <div class="ml-2 grey--text text--darken-2">
+                  <span>{{ value }}</span>
+                  <span>({{ reviews }})</span>
+                </div>
+              </div>
+            </div>
+            <v-spacer></v-spacer>
+            <v-btn icon class="mr-0">
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </v-card-title>
         </v-card>
-      </v-tab-item>
-    </v-tabs>
-    <div class="text-xs-center mt-3">
-      <v-btn @click="next">next tab</v-btn>
-    </div>
-  </div>
+      </v-hover>
+      <v-form>
+        <v-container>
+          <v-layout row wrap>
+            <v-flex xs12 sm6 md3>
+              <v-text-field label="Regular" ></v-text-field>
+            </v-flex>
+            <v-flex xs12 sm6 md3>
+              <v-text-field label="Regular" placeholder="Placeholder" ></v-text-field>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-form>
+    </v-flex>
+  </v-layout>
+    <v-layout wrap align-center>
+      <v-flex xs12 sm6 d-flex>
+        <v-select :items="items" label="Outline style" outline ></v-select>
+      </v-flex>
+      <v-flex xs12 sm6 d-flex>
+        <v-select :items="items" label="Solo field" solo ></v-select>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
   export default {
-    data () {
-      return {
-        active: null,
-        text: '3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-      }
-    },
-    methods: {
-      next () {
-        const active = parseInt(this.active)
-        this.active = (active < 2 ? active + 1 : 0)
-      }
-    }
+    data: () => ({
+      reviews: 413,
+      value: 4.5,
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz']
+    })
   }
 </script>
